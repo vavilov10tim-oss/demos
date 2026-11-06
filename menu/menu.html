@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Утро в Сердце — Меню</title>
+<style>
+@font-face{font-family:"Oswald";font-weight:100 900;src:url(fonts/oswald-500.woff2) format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:100 900;src:url(fonts/cormorant-600i.woff2) format("woff2")}
+@font-face{font-family:"Jost";font-weight:400;src:url(fonts/jost-400.woff2) format("woff2")}
+@font-face{font-family:"Jost";font-weight:500;src:url(fonts/jost-500.woff2) format("woff2")}
+:root{
+  --arena:#FDF9F1;--card:#FFFFFF;--terra:#B85C38;--terra-deep:#8F4227;--ink:#2B1B12;
+  --muted:#93765C;--line:#EBDCC6;--rojo:#E63946;--leaf:#4F7A5B;--cream:#FBF3E4;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Jost",system-ui,sans-serif;color:var(--ink);background:var(--arena);font-size:16px;line-height:1.5}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding-bottom:calc(120px + env(safe-area-inset-bottom))}
+.osw{font-family:"Oswald",sans-serif}
+
+/* ===== шапка-постер ===== */
+.hero{background:var(--terra);color:var(--cream);padding:30px 20px 20px;border-radius:0 0 24px 24px}
+.hello{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:600;font-size:48px;line-height:1.02;color:var(--cream)}
+.sub{margin-top:10px;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#F3D9C8}
+.meta{display:flex;gap:8px;align-items:center;margin-top:16px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:5px;height:31px;padding:0 13px;border-radius:8px;font-size:13px;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--cream);border:1.5px solid rgba(251,243,228,.55)}
+.pill b{color:#fff}
+.tbl{background:var(--cream);color:var(--terra-deep);border-color:var(--cream);font-family:"Oswald",sans-serif;font-weight:600;font-size:14px}
+.dstrip{display:flex;gap:0;margin-top:16px;border:1.5px solid rgba(251,243,228,.55);border-radius:8px;overflow:hidden}
+.dstrip button{flex:1;background:transparent;padding:7px 0;font-family:"Oswald",sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#F3D9C8}
+.dstrip button.on{background:var(--cream);color:var(--terra-deep);font-weight:600}
+
+/* поиск */
+.search{display:flex;align-items:center;gap:10px;margin-top:16px;height:52px;padding:0 16px;background:var(--cream);border-radius:12px;color:var(--ink)}
+.search svg{width:19px;height:19px;color:var(--muted);flex:none}
+.search input{flex:1;border:0;background:none;font:inherit;font-size:16px;color:var(--ink);outline:none;min-width:0}
+.search input::placeholder{color:#B4A48F}
+.search .clr{width:26px;height:26px;border-radius:50%;background:var(--arena);font-size:13px;color:var(--muted);display:none;place-items:center;flex:none}
+
+/* категории */
+.cats{position:sticky;top:0;z-index:10;background:var(--arena);padding:12px 20px 10px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;border-bottom:1.5px solid var(--line)}
+.cats::-webkit-scrollbar{display:none}
+.cat{flex:none;height:35px;padding:0 15px;border-radius:9px;background:transparent;border:1.5px solid var(--terra);color:var(--terra-deep);font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:500}
+.cat.on{background:var(--terra);color:var(--cream)}
+
+/* блюда */
+main{padding:0 20px}
+h2.ct{display:flex;align-items:center;gap:12px;font-family:"Oswald",sans-serif;font-weight:600;font-size:27px;text-transform:uppercase;color:var(--terra-deep);margin:26px 0 2px;letter-spacing:.02em}
+h2.ct::after{content:"";flex:1;height:1.5px;background:var(--line)}
+.dish{display:flex;gap:13px;padding:13px 0;border-bottom:1.5px solid var(--line);align-items:center;cursor:pointer}
+.dish .pic{position:relative;width:66px;height:66px;flex:none}
+.dish img{width:66px;height:66px;border-radius:12px;object-fit:cover;display:block;background:var(--line)}
+.dish .ph{position:absolute;inset:0;border-radius:12px;background:linear-gradient(135deg,#EBDFCE,#DECBB2);display:none;place-items:center;color:var(--terra);font-size:17px}
+.dish .inf{flex:1;min-width:0}
+.dish .nm{font-weight:500;font-size:16.5px;line-height:1.3}
+.dish .tg{font-size:13.5px;color:var(--muted);margin-top:1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dish .row{display:flex;align-items:center;justify-content:space-between;margin-top:7px;gap:8px}
+.pr{font-family:"Oswald",sans-serif;font-weight:500;font-size:17px;letter-spacing:.03em;white-space:nowrap}
+.var{font-size:12px;color:var(--terra-deep);white-space:nowrap;text-transform:uppercase;letter-spacing:.05em}
+.add{width:36px;height:36px;border-radius:10px;background:var(--terra);color:var(--cream);font-size:21px;line-height:1;display:grid;place-items:center;flex:none;transition:transform .12s}
+.add:active{transform:scale(.88)}
+.hit{display:inline-block;vertical-align:2px;margin-left:7px;font-size:10.5px;font-weight:500;color:var(--rojo);border:1.5px solid var(--rojo);border-radius:6px;padding:1px 6px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.vd{position:absolute;left:5px;bottom:5px;height:20px;padding:0 8px;border-radius:6px;background:rgba(43,27,18,.78);color:var(--cream);font-size:10.5px;display:grid;place-items:center;pointer-events:none}
+mark{background:none;color:var(--terra-deep);font-weight:500}
+.none{padding:34px 0;text-align:center;color:var(--muted);font-size:15px}
+
+/* плавающие кнопки */
+.fabs{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:40;width:min(100vw - 28px,532px);display:flex;gap:10px}
+.cartbtn{flex:1;height:55px;border-radius:14px;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-family:"Oswald",sans-serif;font-size:16.5px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;box-shadow:0 10px 26px rgba(43,27,18,.35)}
+.cartbtn .n{background:rgba(245,241,232,.16);border-radius:7px;padding:2px 10px;font-size:14px}
+.chatbtn{width:auto;padding:0 16px;height:55px;border-radius:14px;background:var(--terra);display:flex;gap:8px;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(184,92,56,.4);color:var(--cream);font-weight:500;font-size:15.5px;position:relative}
+.chatbtn svg{width:21px;height:21px;color:var(--cream)}
+.chatbtn .dot{position:absolute;top:-4px;right:-4px;width:14px;height:14px;border-radius:50%;background:var(--leaf);border:2px solid var(--arena)}
+.hide{display:none!important}
+
+/* шит */
+.back{position:fixed;inset:0;background:rgba(43,27,18,.5);z-index:55}
+.sheet{position:fixed;left:50%;transform:translateX(-50%);bottom:0;z-index:60;width:min(100vw,560px);max-height:86dvh;display:flex;flex-direction:column;background:var(--card);border-radius:20px 20px 0 0;box-shadow:0 -14px 44px rgba(43,27,18,.3)}
+.sheet header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px 8px}
+.sheet h3{font-family:"Oswald",sans-serif;font-size:24px;font-weight:600;margin:0;text-transform:uppercase;color:var(--ink);letter-spacing:.02em}
+.x{width:34px;height:34px;border-radius:9px;background:var(--arena);font-size:15px;color:var(--muted)}
+.sheet .body{overflow-y:auto;padding:0 20px}
+.sheet .foot{padding:14px 20px calc(16px + env(safe-area-inset-bottom));border-top:1.5px solid var(--line)}
+
+/* карточка блюда */
+.detail .dimg{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 22%;display:block;background:linear-gradient(135deg,#EBDFCE,#DECBB2)}
+.detail .dbody{padding:16px 20px 8px}
+.detail .dnm{font-family:"Oswald",sans-serif;font-weight:600;font-size:27px;line-height:1.1;text-transform:uppercase;color:var(--ink);letter-spacing:.01em}
+.detail .dcat{font-size:12.5px;color:var(--terra-deep);margin-top:3px;text-transform:uppercase;letter-spacing:.08em}
+.detail .dtg{font-size:15px;color:var(--muted);margin-top:8px;line-height:1.5}
+.dopt{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1.5px solid var(--line);cursor:pointer}
+.dopt .rdo{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center}
+.dopt.on .rdo{border-color:var(--terra)}
+.dopt.on .rdo::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--terra)}
+.dopt .t{flex:1;font-size:15.5px}
+.dqty{display:flex;align-items:center;justify-content:center;gap:16px;padding:14px 0 4px}
+.dqty button{width:40px;height:40px;border-radius:11px;background:var(--arena);border:1.5px solid var(--line);font-size:20px}
+.dqty b{font-family:"Oswald",sans-serif;font-size:20px;min-width:26px;text-align:center}
+
+/* корзина */
+.cl{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1.5px solid var(--line)}
+.cl .t{flex:1;min-width:0;font-size:15.5px;line-height:1.3}
+.cl .t small{display:block;color:var(--muted);font-size:13px}
+.qty{display:flex;align-items:center;gap:10px;flex:none}
+.qty button{width:31px;height:31px;border-radius:9px;background:var(--arena);border:1.5px solid var(--line);font-size:17px}
+.qty b{min-width:18px;text-align:center}
+textarea{width:100%;min-height:60px;border:1.5px solid var(--line);border-radius:12px;padding:10px 13px;font:inherit;font-size:15px;background:var(--arena);resize:vertical;margin-top:10px}
+.go{width:100%;height:52px;border-radius:13px;background:var(--terra);color:var(--cream);font-family:"Oswald",sans-serif;font-size:16.5px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.note{font-size:13.5px;color:var(--muted);text-align:center;margin:10px 0 0}
+.ok{text-align:center;padding:34px 10px}
+.ok .big{font-family:"Oswald",sans-serif;font-size:29px;color:var(--leaf);font-weight:600;text-transform:uppercase}
+
+/* отзывы */
+.revbox{margin:30px 20px 0;padding:20px;background:var(--card);border:1.5px solid var(--line);border-radius:18px;text-align:center}
+.revbox h4{font-family:"Oswald",sans-serif;font-size:23px;font-weight:600;margin:0 0 3px;color:var(--terra-deep);text-transform:uppercase;letter-spacing:.02em}
+.revbox p{font-size:14.5px;color:var(--muted);margin:0 0 12px}
+.stars{display:flex;justify-content:center;gap:4px}
+.stars button{font-size:36px;background:none;color:#E0D2BC;padding:0 3px}
+.stars button.on{color:var(--terra)}
+.revlinks{display:grid;gap:9px;margin-top:14px}
+.revlinks a{display:flex;align-items:center;justify-content:center;height:47px;border-radius:12px;text-decoration:none;font-weight:500;font-size:15.5px}
+.ry{background:#FC3F1D;color:#fff}
+.rg{background:#1A73E8;color:#fff}
+
+/* чат */
+.chatlog{display:flex;flex-direction:column;gap:9px;padding:12px 0}
+.msg{max-width:86%;padding:10px 15px;border-radius:15px;font-size:15.5px;line-height:1.45;white-space:pre-wrap}
+.msg.ai{background:var(--arena);border:1.5px solid var(--line);align-self:flex-start;border-bottom-left-radius:5px}
+.msg.me{background:var(--terra);color:var(--cream);align-self:flex-end;border-bottom-right-radius:5px}
+.chatform{display:flex;gap:9px;padding:13px 20px calc(15px + env(safe-area-inset-bottom));border-top:1.5px solid var(--line)}
+.chatform input{flex:1;height:47px;border:1.5px solid var(--line);border-radius:12px;padding:0 15px;font:inherit;font-size:15.5px;background:var(--arena)}
+.chatform button{width:47px;height:47px;border-radius:12px;background:var(--terra);color:var(--cream);font-size:19px}
+.typing{font-size:13.5px;color:var(--muted);align-self:flex-start}
+footer{padding:28px 20px 8px;text-align:center;font-size:12.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="hello" id="hello">Доброе утро</div>
+    <div class="sub">Утро в Сердце · Шелепихинская наб., 34к3 · 8:00–23:00</div>
+    <div class="meta">
+      <a class="pill" href="#revbox">★ <b>5,0</b>&nbsp;· отзывы</a>
+      <span class="pill tbl hide" id="tblPill">Стол № <b id="tblNo"></b></span>
+    </div>
+    <div class="dstrip">
+      <button id="dlM" type="button">Утро</button><button id="dlD" type="button">День</button><button id="dlE" type="button">Вечер</button>
+    </div>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Найти блюдо или напиток" autocomplete="off">
+      <button class="clr" id="qClr" aria-label="Очистить">✕</button>
+    </div>
+  </div>
+
+  <nav class="cats" id="cats" aria-label="Разделы меню"></nav>
+  <main id="menu"></main>
+  <div class="none hide" id="none">Ничего не нашлось. Попробуйте другое слово — или спросите у нас в чате.</div>
+
+  <section class="revbox" id="revbox">
+    <h4>Как вам у нас?</h4>
+    <p>Пара секунд — а нам это очень помогает</p>
+    <div class="stars" id="stars"></div>
+    <div id="revArea"></div>
+  </section>
+
+  <footer>Утро в Сердце · Шелепихинская наб., 34к3<br>+7 (903) 592-50-75</footer>
+</div>
+
+<div class="fabs">
+  <button class="cartbtn hide" id="cartBtn"><span>Заказ <span class="n" id="cartN"></span></span><span id="cartSum"></span></button>
+  <button class="chatbtn" id="chatBtn" aria-label="Спросить у помощника">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a8 8 0 0 1-8 8H5l-2 2V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"/></svg>
+    Помощник
+    <span class="dot"></span>
+  </button>
+</div>
+
+<script src="menu-data.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+const rub=n=>n.toLocaleString("ru-RU")+" ₽";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TABLE=(new URLSearchParams(location.search).get("table")||"").match(/^\d{1,3}$/)?.[0]||null;
+if(TABLE){$("#tblPill").classList.remove("hide");$("#tblNo").textContent=TABLE}
+
+const ALL=[...ITEMS,...EXTRA];
+const BY={};ALL.forEach(i=>BY[i.id]=i);
+const ADDON_BY={};ADDONS.forEach(a=>ADDON_BY[a.uid]=a);
+/* Хиты: высокомаржинальные/фирменные позиции — заведение меняет этот список */
+const HITS=["Завтрак в сердце","Трюфельный бургер","Капучино","Медальоны из говядины с пюре и грибным соусом"];
+const hour=new Date().getHours();
+const DP=DAYPARTS.find(d=>d.from<=d.to?(hour>=d.from&&hour<d.to):(hour>=d.from||hour<d.to))||DAYPARTS[0];
+$("#hello").textContent={morning:"Доброе утро",day:"Добрый день",evening:"Добрый вечер"}[DP.id]||"Доброе утро";
+
+/* ===== меню: рабочий переключатель Утро/День/Вечер ===== */
+let VIEW=DP,usedCats=[];
+const catsEl=$("#cats"),menuEl=$("#menu");
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  [...catsEl.children].forEach(b=>b.classList.toggle("on","c-"+b.dataset.c===e.target.id));
+  [...catsEl.children].find(b=>b.classList.contains("on"))?.scrollIntoView({inline:"center",block:"nearest"})}})},{rootMargin:"-70px 0px -75% 0px"});
+function setView(id){
+  VIEW=DAYPARTS.find(d=>d.id===id)||DP;
+  [["dlM","morning"],["dlD","day"],["dlE","evening"]].forEach(([k,v])=>$("#"+k).classList.toggle("on",v===VIEW.id));
+  const co=[...VIEW.cats,...[...new Set(ALL.map(i=>i.cat))].filter(c=>!VIEW.cats.includes(c))];
+  usedCats=co.filter(c=>ALL.some(i=>i.cat===c));
+  catsEl.innerHTML=usedCats.map(c=>`<button class="cat" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+  [...catsEl.children].forEach(b=>b.onclick=()=>{clearSearch();document.getElementById("c-"+b.dataset.c)?.scrollIntoView({block:"start"})});
+  clearSearch();
+}
+$("#dlM").onclick=()=>setView("morning");
+$("#dlD").onclick=()=>setView("day");
+$("#dlE").onclick=()=>setView("evening");
+
+const norm=s=>String(s).toLowerCase().replace(/ё/g,"е");
+function dishHtml(i,hl){
+  const hasVar=i.variants&&i.variants.length;
+  let nm=esc(i.title);
+  if(hl){const re=new RegExp("("+hl.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");nm=nm.replace(re,"<mark>$1</mark>")}
+  return `<div class="dish" data-id="${i.id}">
+    <div class="pic">
+      <img src="photos/${i.id}.jpg" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <div class="ph">✦</div>
+      ${i.novideo?"":`<span class="vd">▶</span>`}
+    </div>
+    <div class="inf">
+      <div class="nm">${nm}${HITS.includes(i.title)?`<span class="hit">Хит</span>`:""}</div>
+      ${i.tag?`<div class="tg">${esc(i.tag)}</div>`:""}
+      <div class="row">
+        <span class="pr">${rub(i.price)}${hasVar?" +":""}</span>
+        ${hasVar?`<span class="var">${i.variants.length+1} варианта</span>`:""}
+        <button class="add" data-add="${i.id}" aria-label="Добавить ${esc(i.title)}">+</button>
+      </div>
+    </div>
+  </div>`;
+}
+function renderMenu(){
+  menuEl.innerHTML=usedCats.map(c=>`<h2 class="ct" id="c-${esc(c)}">${esc(c)}</h2>`+ALL.filter(i=>i.cat===c).map(i=>dishHtml(i)).join("")).join("");
+}
+renderMenu();
+
+/* инициализация вида — в конце скрипта, после объявления поиска */
+
+/* ===== поиск ===== */
+const q=$("#q");
+function clearSearch(){q.value="";$("#qClr").style.display="none";$("#none").classList.add("hide");catsEl.classList.remove("hide");renderMenu();
+  usedCats.forEach(c=>{const el=document.getElementById("c-"+c);if(el)obs.observe(el)})}
+q.addEventListener("input",()=>{
+  const v=norm(q.value.trim());
+  $("#qClr").style.display=v?"grid":"none";
+  if(!v)return clearSearch();
+  const hits=ALL.filter(i=>norm(i.title).includes(v)||norm(i.tag||"").includes(v)||norm(i.cat).includes(v));
+  obs.disconnect();catsEl.classList.add("hide");
+  menuEl.innerHTML=hits.map(i=>dishHtml(i,q.value.trim())).join("");
+  $("#none").classList.toggle("hide",hits.length>0);
+});
+$("#qClr").onclick=()=>{clearSearch();q.focus()};
+
+/* ===== корзина ===== */
+let cart=JSON.parse(localStorage.getItem("uvs-cart")||"[]");
+const save=()=>{localStorage.setItem("uvs-cart",JSON.stringify(cart));renderCartBtn()};
+const cartCount=()=>cart.reduce((s,l)=>s+l.q,0);
+const cartTotal=()=>cart.reduce((s,l)=>s+l.q*l.price,0);
+function renderCartBtn(){
+  const n=cartCount();
+  $("#cartBtn").classList.toggle("hide",!n);
+  $("#cartN").textContent=n;$("#cartSum").textContent=rub(cartTotal());
+}
+function addLine(id,variant,addons,qty){
+  const it=BY[id];if(!it)return;
+  qty=qty||1;
+  const key=id+"|"+(variant||"")+"|"+(addons||[]).join(",");
+  const ex=cart.find(l=>l.key===key);
+  const title=variant?`${it.title} — ${variant}`:it.title;
+  const price=(variant?(it.variants.find(v=>v.title===variant)||{}).price:it.price)||it.price;
+  const addonSum=(addons||[]).reduce((s,u)=>s+(ADDON_BY[u]?.price||0),0);
+  if(ex)ex.q+=qty;else cart.push({key,id,title,price:price+addonSum,addons:addons||[],q:qty});
+  save();
+}
+menuEl.addEventListener("click",e=>{
+  const b=e.target.closest("[data-add]");
+  if(b){
+    const it=BY[b.dataset.add];
+    if(it.variants&&it.variants.length)return openVariant(it);
+    if(it.addons)return openAddons(it);
+    addLine(it.id);b.textContent="✓";setTimeout(()=>b.textContent="+",600);
+    return;
+  }
+  const row=e.target.closest(".dish");
+  if(row){const it=BY[row.dataset.id];if(it)openDetail(it)}
+});
+
+function sheet(html){closeSheet();
+  const bd=document.createElement("div");bd.className="back";bd.onclick=closeSheet;
+  const sh=document.createElement("div");sh.className="sheet";sh.innerHTML=html;
+  document.body.append(bd,sh);return sh;
+}
+function closeSheet(){document.querySelectorAll(".sheet,.back").forEach(el=>el.remove())}
+function openVariant(it){
+  const opts=[{title:it.title,price:it.price},...it.variants];
+  const sh=sheet(`<header><h3>${esc(it.title)}</h3><button class="x">✕</button></header>
+    <div class="body">${opts.map(o=>`<div class="cl"><div class="t">${esc(o.title)}</div><span class="pr">${rub(o.price)}</span>
+    <button class="add" data-v="${esc(o.title)}">+</button></div>`).join("")}</div><div class="foot"></div>`);
+  sh.querySelector(".x").onclick=closeSheet;
+  sh.addEventListener("click",e=>{const b=e.target.closest("[data-v]");if(!b)return;
+    addLine(it.id,b.dataset.v===it.title?null:b.dataset.v);closeSheet()});
+}
+function openAddons(it){
+  const sh=sheet(`<header><h3>${esc(it.title)}</h3><button class="x">✕</button></header>
+    <div class="body"><p class="note" style="text-align:left;margin-top:6px">Добавки к блюду:</p>
+    ${ADDONS.map(a=>`<div class="cl"><div class="t">${esc(a.title)}</div><span class="pr">+${rub(a.price)}</span>
+    <button class="add" data-a="${a.uid}">+</button></div>`).join("")}</div>
+    <div class="foot"><button class="go" id="addGo">В корзину · <span id="addSum">${rub(it.price)}</span></button></div>`);
+  sh.querySelector(".x").onclick=closeSheet;
+  const sel=new Set();
+  sh.addEventListener("click",e=>{
+    const b=e.target.closest("[data-a]");
+    if(b){const u=b.dataset.a;
+      if(sel.has(u)){sel.delete(u);b.textContent="+"}else{sel.add(u);b.textContent="✓"}
+      sh.querySelector("#addSum").textContent=rub(it.price+[...sel].reduce((s,x)=>s+ADDON_BY[x].price,0));return}
+    if(e.target.closest("#addGo")){addLine(it.id,null,[...sel]);closeSheet()}
+  });
+}
+
+/* карточка блюда по тапу */
+function openDetail(it){
+  const hasVar=it.variants&&it.variants.length;
+  const hasAdd=it.addons;
+  const opts=hasVar?[{title:it.title,price:it.price},...it.variants]:null;
+  let selIdx=0,qty=1;const selAdd=new Set();
+  const sum=()=>((opts?opts[selIdx].price:it.price)+[...selAdd].reduce((s,u)=>s+ADDON_BY[u].price,0))*qty;
+  const sh=sheet(`<button class="x" style="position:absolute;top:12px;right:12px;z-index:2">✕</button>
+    <div class="body detail" style="padding:0">
+      ${it.novideo
+        ?`<img class="dimg" src="photos/${it.id}.jpg" alt="" onerror="this.style.display='none'">`
+        :`<video class="dimg" src="videos/${it.id}.mp4" poster="photos/${it.id}.jpg" autoplay muted loop playsinline
+            onerror="this.outerHTML='<img class=dimg src=photos/${it.id}.jpg>'"></video>`}
+      <div class="dbody">
+        <div class="dnm">${esc(it.title)}</div>
+        <div class="dcat">${esc(it.cat)}</div>
+        ${it.tag?`<div class="dtg">${esc(it.tag)}</div>`:""}
+        ${hasVar?`<div style="margin-top:10px">${opts.map((o,i)=>`<div class="dopt${i?"":" on"}" data-i="${i}"><span class="rdo"></span><span class="t">${esc(o.title)}</span><span class="pr">${rub(o.price)}</span></div>`).join("")}</div>`:""}
+        ${hasAdd?`<div class="note" style="text-align:left;margin:12px 0 0">Добавки:</div>
+          ${ADDONS.map(a=>`<div class="dopt" data-u="${a.uid}"><span class="rdo"></span><span class="t">${esc(a.title)}</span><span class="pr">+${rub(a.price)}</span></div>`).join("")}`:""}
+        <div class="dqty"><button data-q="-1">−</button><b id="dqn">1</b><button data-q="1">+</button></div>
+      </div>
+    </div>
+    <div class="foot"><button class="go" id="dGo">В корзину · <span id="dSum">${rub(it.price)}</span></button></div>`);
+  sh.querySelector(".x").onclick=closeSheet;
+  const upd=()=>{sh.querySelector("#dqn").textContent=qty;sh.querySelector("#dSum").textContent=rub(sum())};
+  sh.addEventListener("click",e=>{
+    const v=e.target.closest(".dopt[data-i]");
+    if(v){selIdx=+v.dataset.i;
+      sh.querySelectorAll(".dopt[data-i]").forEach(el=>el.classList.toggle("on",+el.dataset.i===selIdx));
+      upd();return}
+    const a=e.target.closest(".dopt[data-u]");
+    if(a){const u=a.dataset.u;
+      selAdd.has(u)?selAdd.delete(u):selAdd.add(u);
+      a.classList.toggle("on");upd();return}
+    const qb=e.target.closest("[data-q]");
+    if(qb){qty=Math.max(1,qty+ +qb.dataset.q);upd();return}
+    if(e.target.closest("#dGo")){
+      addLine(it.id,hasVar&&selIdx?opts[selIdx].title:null,[...selAdd],qty);
+      closeSheet();
+    }
+  });
+}
+
+$("#cartBtn").onclick=()=>{
+  const sh=sheet(`<header><h3>Ваш заказ${TABLE?` · стол № ${TABLE}`:""}</h3><button class="x">✕</button></header>
+    <div class="body" id="cBody"></div>
+    <div class="foot">
+      <textarea id="cComment" placeholder="Комментарий: без лука, острее, аллергия…"></textarea>
+      <button class="go" id="sendOrder" style="margin-top:10px">Отправить заказ · ${rub(cartTotal())}</button>
+      <p class="note">Официант получит заказ и подойдёт подтвердить. Оплата — как обычно, в конце.</p>
+    </div>`);
+  sh.querySelector(".x").onclick=closeSheet;
+  const body=sh.querySelector("#cBody");
+  const draw=()=>{
+    body.innerHTML=cart.map(l=>`<div class="cl"><div class="t">${esc(l.title)}
+      ${l.addons.length?`<small>+ ${l.addons.map(u=>esc(ADDON_BY[u]?.title||"")).join(", ")}</small>`:""}</div>
+      <div class="qty"><button data-k="${esc(l.key)}" data-d="-1">−</button><b>${l.q}</b><button data-k="${esc(l.key)}" data-d="1">+</button></div>
+      <span class="pr">${rub(l.price*l.q)}</span></div>`).join("")||`<p class="note">Пусто</p>`;
+    sh.querySelector("#sendOrder").textContent=`Отправить заказ · ${rub(cartTotal())}`;
+  };
+  draw();
+  body.addEventListener("click",e=>{const b=e.target.closest("[data-k]");if(!b)return;
+    const l=cart.find(x=>x.key===b.dataset.k);if(!l)return;
+    l.q+=+b.dataset.d;if(l.q<1)cart=cart.filter(x=>x!==l);save();draw();
+    if(!cart.length)closeSheet()});
+  sh.querySelector("#sendOrder").onclick=async()=>{
+    if(!cart.length)return;
+    const order={table:TABLE,items:cart.map(l=>({title:l.title,q:l.q,price:l.price})),total:cartTotal(),comment:sh.querySelector("#cComment").value.trim(),ts:new Date().toISOString()};
+    sh.querySelector(".body").innerHTML=`<div class="ok"><div class="big">Заказ отправлен</div>
+      <p class="note">Официант уже видит ваш заказ${TABLE?` со стола № ${TABLE}`:""} и скоро подойдёт подтвердить.</p></div>`;
+    sh.querySelector(".foot").remove();
+    cart=[];save();
+    try{await fetch("/api/order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)})}catch(e){}
+  };
+};
+renderCartBtn();
+setView(DP.id);
+
+/* ===== отзывы ===== */
+const YREVIEW="https://yandex.ru/maps/org/utro_v_serdtse/9635601053/reviews/";
+const GISREVIEW="https://2gis.ru/moscow/firm/70000001102816427/tab/reviews";
+$("#stars").innerHTML=[1,2,3,4,5].map(n=>`<button data-s="${n}" aria-label="${n} из 5">★</button>`).join("");
+$("#stars").addEventListener("click",e=>{
+  const b=e.target.closest("[data-s]");if(!b)return;
+  const picked=+b.dataset.s;
+  [...$("#stars").children].forEach((el,i)=>el.classList.toggle("on",i<picked));
+  const area=$("#revArea");
+  if(picked>=4){
+    area.innerHTML=`<div class="revlinks">
+      <a class="ry" href="${YREVIEW}" target="_blank" rel="noopener">Оставить отзыв на Яндекс Картах</a>
+      <a class="rg" href="${GISREVIEW}" target="_blank" rel="noopener">Оставить отзыв в 2ГИС</a></div>
+      <p class="note">Спасибо, это лучшая поддержка для нас</p>`;
+  }else{
+    area.innerHTML=`<textarea id="badText" placeholder="Что пошло не так? Руководитель прочитает лично"></textarea>
+      <button class="go" id="badGo" style="margin-top:8px">Отправить руководителю</button>`;
+    area.querySelector("#badGo").onclick=async()=>{
+      const text=area.querySelector("#badText").value.trim();if(!text)return;
+      area.innerHTML=`<p class="note">Спасибо, что сказали. Руководитель уже читает и разберётся.</p>`;
+      try{await fetch("/api/review",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({rating:picked,text,table:TABLE,ts:new Date().toISOString()})})}catch(e){}
+    };
+  }
+});
+
+/* ===== ИИ-чат (GigaChat) ===== */
+let chatHistory=[];
+$("#chatBtn").onclick=()=>{
+  const sh=sheet(`<header><h3>Спросите нас</h3><button class="x">✕</button></header>
+    <div class="body"><div class="chatlog" id="chatlog">
+      <div class="msg ai">Здравствуйте! Подскажу по меню: что взять, состав блюда, что к кофе. Чего хочется?</div>
+    </div></div>
+    <div class="chatform"><input id="chIn" placeholder="Например: что есть без мяса?" autocomplete="off">
+    <button id="chGo" aria-label="Отправить">→</button></div>`);
+  sh.querySelector(".x").onclick=closeSheet;
+  const log=sh.querySelector("#chatlog"),inp=sh.querySelector("#chIn");
+  const ask=async()=>{
+    const text=inp.value.trim();if(!text)return;
+    inp.value="";
+    log.insertAdjacentHTML("beforeend",`<div class="msg me">${esc(text)}</div>`);
+    log.insertAdjacentHTML("beforeend",`<div class="typing" id="ty">печатает…</div>`);
+    log.scrollTop=log.scrollHeight;
+    chatHistory.push({role:"user",content:text});
+    let ans="Не получилось ответить. Спросите официанта или позвоните нам: +7 (903) 592-50-75";
+    try{
+      const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:chatHistory,table:TABLE})});
+      if(r.ok)ans=(await r.json()).reply||ans;
+    }catch(e){}
+    sh.querySelector("#ty")?.remove();
+    log.insertAdjacentHTML("beforeend",`<div class="msg ai">${esc(ans)}</div>`);
+    log.scrollTop=log.scrollHeight;
+    chatHistory.push({role:"assistant",content:ans});
+    if(chatHistory.length>12)chatHistory=chatHistory.slice(-12);
+  };
+  sh.querySelector("#chGo").onclick=ask;
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter")ask()});
+};
+</script>
+</body>
+</html>
